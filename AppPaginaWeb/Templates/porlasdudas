@@ -1,0 +1,63 @@
+<p>Nombre: <input type="text" name="Nombre" id='Nombre'></p>
+    <p>Genero: <input type="text" name="Genero" id='Genero'></p>
+    <p>Estreno: <input type="text" name="Estreno" id='Estreno'></p>
+
+
+
+
+    def crear_serie(request):
+    if request.method == 'POST':
+        formulario=CrearSerieForm(request.POST)
+        if formulario.is_valid():
+            formulario_limpio = formulario.cleaned_data
+            serie = Series(nombre=request.POST['nombre'], genero=request.POST['genero'], estreno=request.POST['estreno'])
+            serie.save
+            return render (request, 'index.html')
+    else:
+        formulario = CrearSerieForm
+    return render (request, 'crear_serie.html', {'formulario': formulario})
+
+def crear_juego(request):
+    if request.method == 'POST':
+        formulario=CrearJuegoForm(request.POST)
+        if formulario.is_valid():
+            formulario_limpio = formulario.cleaned_data
+            juego = Juegos(nombre=request.POST['nombre'], creador=request.POST['creador'], publicacion=request.POST['publicacion'])
+            juego.save
+        return render (request, 'index.html')
+    else:
+        formulario = CrearJuegoForm
+    return render (request, 'crear_juego.html', {'formulario': formulario})
+
+def mislibros(request):
+
+    a1 = Libros(nombre='El señor de los anillos', autor='J. R. R. Tolkien', publicacion='1954')
+    a2 = Libros(nombre='Cien años de soledad', autor='Gabriel García Márquez', publicacion='1967')
+    a3 = Libros(nombre='1984', autor='George Orwell', publicacion='1949')
+
+    return render(request, 'libros.html', {'libros':[a1,a2,a3]})
+
+def misjuegos(request):
+    a1 = Juegos(nombre='Portal', creador='Kim Swift', publicacion='2007-10-10')
+    a2 = Juegos(nombre='Hades', creador='Supergiant Games', publicacion='2018-12-6')
+    a3 = Juegos(nombre='Hollow Knight', creador='Team Cherry', publicacion='2017-02-24')
+
+    return render(request, 'juegos.html', {'juegos':[a1,a2,a3]})
+
+def misseries(request):
+    a1 = Series(nombre='Friends', genero='Comedia', estreno='1994-07-22')
+    a2 = Series(nombre='Modern Family', genero='Comedia', estreno='2009-07-23')
+    a3 = Series(nombre='Dark', genero='Suspenso', estreno='2017-12-1')
+
+    return render(request, 'series.html', {'series':[a1,a2,a3]})
+
+
+    #autor = request.GET['genero']
+
+    nombre = Libros.objects.filter(autor__icontains=autor)
+    
+    return render(request, 'buscar_libro.html', {'libro': Libros})#
+
+    else:
+        respuesta = 'No hay datos'
+    return render(request, 'buscar_libro.html', {'respuesta': respuesta})

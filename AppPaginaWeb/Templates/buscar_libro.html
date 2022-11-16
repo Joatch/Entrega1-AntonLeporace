@@ -1,0 +1,15 @@
+<form action='' method='get'>
+    <input type='text' name='autor' id='libro'>
+    <input type="submit" value='Buscar'>
+
+<form>
+
+{% if libro %}
+    <ul>
+        <li> {{libro.nombre}} es mi libro favorito, cuyo autor es {{libro.autor}}</li>
+    </ul>
+{% endif %}
+
+{% if error %}
+    <p> {{error}} </p>
+{% endif %}

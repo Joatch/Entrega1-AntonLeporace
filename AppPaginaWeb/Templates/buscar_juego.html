@@ -1,0 +1,17 @@
+<form action='' method='get'>
+    <input type='text' name='creador' id='juego'>
+    <input type="submit" value='Buscar'>
+
+<form>
+
+{% if juego %}
+    <ul>
+        <li> {{juego.nombre}} es mi juego favorito, creado por {{juego.creador}}</li>
+    </ul>
+{% endif %}
+
+{% if error %}
+    <p> {{error}} </p>
+{% endif %}
+
+

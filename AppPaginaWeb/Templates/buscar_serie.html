@@ -1,0 +1,16 @@
+<form action='' method='get'>
+    <input type='text' name='nombre' id='serie'>
+    <input type="submit" value='Buscar'>
+
+<form>
+
+{% if series %}
+    <ul>
+        <li> {{series.nombre}} es mi serie favorita, con genero de {{series.genero}}</li>
+    </ul>
+{% endif %}
+
+{% if error %}
+    <p> {{error}} </p>
+{% endif %}
+
